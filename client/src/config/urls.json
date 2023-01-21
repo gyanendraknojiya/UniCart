@@ -1,0 +1,12 @@
+{
+  "USER_SIGNUP": "/user/signup",
+  "USER_LOGIN": "/user/login",
+  "GET_USER_PROFILE": "/user/user-profile",
+  "GET_PRODUCTS_LIST": "/products/list",
+  "CART": {
+    "GET_CART_ITEMS": "/cart",
+    "ADD_TO_CART": "/cart/",
+    "REMOVE_FROM_CART": "/cart/",
+    "REMOVE_PRODUCT_FROM_CART": "/cart/product/"
+  }
+}
