@@ -1,7 +1,7 @@
 import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CartItem from 'components/cart/CartItem';
+import CartItem from 'components/cart/cartItem';
 
 const ViewCart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);

@@ -1,7 +1,7 @@
 import { Box, Button, Grid, GridItem, HStack, Image, Input, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import PriceFormat from 'hooks/PriceFormat';
+import PriceFormat from 'hooks/priceFormat';
 import { addToCart, removeFromCart, removeProductFromCart } from 'redux/slice/cartSlice';
 import { discountPercent } from 'utils/discountCalculator';
 

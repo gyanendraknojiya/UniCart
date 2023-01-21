@@ -1,6 +1,6 @@
 import React from 'react';
-import ViewCart from 'components/cart/ViewCart';
-import LayoutWrapper from 'layouts/LayoutWrapper';
+import ViewCart from 'components/cart/viewCart';
+import LayoutWrapper from 'layouts/layoutWrapper';
 
 const Cart = () => {
   return (

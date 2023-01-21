@@ -4,7 +4,7 @@ import { TbHandClick } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from 'config/routes.json';
-import PriceFormat from 'hooks/PriceFormat';
+import PriceFormat from 'hooks/priceFormat';
 import { addToCart } from 'redux/slice/cartSlice';
 import { discountPercent } from 'utils/discountCalculator';
 

@@ -1,8 +1,8 @@
 import { Heading, SimpleGrid } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loading from 'components/loader/Index';
-import ProductCard from 'components/product/ProductCard';
+import Loading from 'components/loader';
+import ProductCard from 'components/product/productCard';
 import { getProductsList } from 'redux/slice/prodcutsSlice';
 
 const Products = () => {
