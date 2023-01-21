@@ -6,8 +6,8 @@ import ROUTES from 'config/routes.json';
 import AuthValidator from 'hooks/authValidator';
 import Login from 'pages/auth/login';
 import SignUp from 'pages/auth/signup';
-import Cart from 'pages/cart/Index';
-import Homepage from 'pages/homepage/Index';
+import Cart from 'pages/cart';
+import Homepage from 'pages/homepage';
 import { getCartItems } from 'redux/slice/cartSlice';
 
 const App = () => {
