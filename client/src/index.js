@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import 'index.css';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import App from './App';
-import { store } from './redux/store';
-import reportWebVitals from './reportWebVitals';
+import App from 'App';
+import { store } from 'redux/store';
+import reportWebVitals from 'reportWebVitals';
+import theme from 'theme';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/dm-sans';
-import theme from './theme';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(

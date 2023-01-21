@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Loading from './components/loader/Index';
-import AuthValidator from './hooks/AuthValidator';
-import Login from './pages/auth/Login';
-import SignUp from './pages/auth/Signup';
-import Cart from './pages/cart/Index';
-import Homepage from './pages/homepage/Index';
-import { getCartItems } from './redux/slice/cartSlice';
+import Loading from 'components/loader/Index';
 import ROUTES from 'config/routes.json';
+import AuthValidator from 'hooks/AuthValidator';
+import Login from 'pages/auth/Login';
+import SignUp from 'pages/auth/Signup';
+import Cart from 'pages/cart/Index';
+import Homepage from 'pages/homepage/Index';
+import { getCartItems } from 'redux/slice/cartSlice';
 
 const App = () => {
   const [loading, userAuth] = AuthValidator();
