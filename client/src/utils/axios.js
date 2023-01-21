@@ -16,7 +16,7 @@ function configAxios() {
 //
 
 const handleUnauthorizedError = (e) => {
-  if (e.response.status === 401) {
+  if (e.response?.status === 401) {
     window.location.href = ROUTES.LOGIN;
   }
 };
@@ -37,10 +37,6 @@ export function post(url, data, thunkAPI, headers = true) {
     data,
     headers: headers ? getHeaders() : {},
   })
-    .then((response) => response)
-    .catch((error) => {
-      throw thunkAPI.rejectWithValue(error.response.data);
-    })
     .then((response) => response)
     .catch((error) => {
       handleUnauthorizedError(error);

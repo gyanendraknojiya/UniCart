@@ -3,7 +3,6 @@ import { Button, Icon, Input, InputGroup, InputLeftElement, Stack } from '@chakr
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { BsCalendarDateFill, BsGenderAmbiguous } from 'react-icons/bs';
 import { FaUserCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +15,7 @@ import AuthLayout from 'layouts/authLayout';
 import { toggleLoader } from 'redux/slice/loaderSlice';
 import { userSignup } from 'redux/slice/userSlice';
 import { asyncValidate } from 'utils/asyncValidate';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const SignUp = ({ handleSubmit }) => {
   const [dob, setDob] = useState();

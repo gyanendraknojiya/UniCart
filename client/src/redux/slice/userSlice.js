@@ -70,6 +70,7 @@ export const userSlice = createSlice({
       state.isLoading = false;
     },
     [userLogin.rejected]: (state, action) => {
+      console.log(action);
       toast.error(action.payload.message, 3000);
       state.isLoading = false;
     },
