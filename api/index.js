@@ -14,6 +14,8 @@ app.use(
 );
 app.use(express.json());
 
+app.get("/", (req, res) => res.send("Server is running :)"));
+
 app.use("/api", router);
 
 redisClient.connect();
