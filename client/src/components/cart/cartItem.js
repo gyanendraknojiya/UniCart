@@ -1,11 +1,14 @@
 import { Box, Button, Grid, GridItem, HStack, Image, Input, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import PriceFormat from 'hooks/PriceFormat';
 import { addToCart, removeFromCart, removeProductFromCart } from 'redux/slice/cartSlice';
 import { discountPercent } from 'utils/discountCalculator';
 
-const CartItem = ({ id, productDetails, quantity }) => {
+const CartItem = ({ id, productDetails, quantity, index }) => {
   const { title, featureImage, category, mrp, sellPrice } = productDetails;
+
+  const { formattedPrice } = PriceFormat();
 
   const dispatch = useDispatch();
 
@@ -22,7 +25,7 @@ const CartItem = ({ id, productDetails, quantity }) => {
   };
 
   return (
-    <Grid templateColumns="repeat(16, 1fr)" gap={6}>
+    <Grid templateColumns="repeat(16, 1fr)" gap={6} className="p-2 rounded-md bg-gray-50">
       <GridItem colSpan={2}>
         <Image src={featureImage} alt={title} className="w-full aspect-square object-contain bg-gray-200 rounded-sm" />
       </GridItem>
@@ -36,7 +39,9 @@ const CartItem = ({ id, productDetails, quantity }) => {
         <HStack maxW="320px">
           <Button onClick={handleIncreaseProductQuantity}>+</Button>
           <Input htmlSize={2} value={quantity} />
-          <Button onClick={handleDecreaseProductQuantity}>-</Button>
+          <Button disabled={quantity <= 1} onClick={handleDecreaseProductQuantity}>
+            -
+          </Button>
         </HStack>
       </GridItem>
       <GridItem colSpan={2} className="flex items-center justify-center">
@@ -45,15 +50,14 @@ const CartItem = ({ id, productDetails, quantity }) => {
         </Button>
       </GridItem>
       <GridItem colSpan={2} className="flex items-center  justify-end">
-        <Stack>
-          <HStack>
-            <Text as="b" fontSize="lg" color="gray.600">
-              ${mrp}
-            </Text>
-            <Text as="s" className="text-gray-500 ml-2" fontSize="xs">
-              ${sellPrice}
-            </Text>
-          </HStack>
+        <Stack className="text-right">
+          <Text as="s" className="text-gray-500 ml-2" fontSize="xs">
+            ${formattedPrice(sellPrice)}
+          </Text>
+          <Text as="b" fontSize="lg" color="gray.600">
+            ${formattedPrice(mrp)}
+          </Text>
+
           <Text color="green">{discountPercent(mrp, sellPrice)}% off</Text>
         </Stack>
       </GridItem>
