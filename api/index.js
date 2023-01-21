@@ -24,6 +24,10 @@ const mongodbConnectionUrl = process.env.MONGO_DB_URL + "/" + process.env.DB_NAM
 
 mongoose.set("strictQuery", false);
 mongoose.connect(mongodbConnectionUrl).then(async () => {
-  await redisClient.connect();
+  try {
+    await redisClient.connect();
+  } catch (e) {
+    console.error("Error in redis connection", e);
+  }
   app.listen(Port, () => console.log(`server is running at ${Port}`));
 });
