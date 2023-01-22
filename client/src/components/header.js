@@ -21,7 +21,7 @@ const Header = () => {
     <div className="bg-gray-100">
       <Container maxW="6xl">
         <nav className="flex py-2 items-center">
-          <Link to="/">
+          <Link to={ROUTES.HOMEPAGE}>
             <Image src={logo} alt="logo" className="h-12" />
           </Link>
           <div className="ml-auto flex items-center">

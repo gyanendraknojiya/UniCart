@@ -1,6 +1,7 @@
 import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import EmptyCart from 'components/cart//emptyCart';
 import CartItem from 'components/cart/cartItem';
 
 const ViewCart = () => {
@@ -15,10 +16,13 @@ const ViewCart = () => {
       </Stack>
       {/* Render cart items */}
       <Stack spacing="4" className="mt-10">
-        {cartItems?.map((item, index) => (
-          <CartItem key={item.id} index={index} {...item}></CartItem>
-        ))}
+        {cartItems?.length ? (
+          cartItems.map((item, index) => <CartItem key={item.id} index={index} {...item}></CartItem>)
+        ) : (
+          <EmptyCart />
+        )}
       </Stack>
+      {/* Cart total */}
     </div>
   );
 };
