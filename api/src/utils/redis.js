@@ -4,6 +4,8 @@ const url = process.env.REDIS_URL;
 
 const redisClient = createClient(url ? { url } : {});
 
+console.log(redisClient)
+
 redisClient.on("connect", function () {
   console.log("Redis connected!");
 });
