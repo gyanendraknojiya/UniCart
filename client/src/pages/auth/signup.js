@@ -97,13 +97,14 @@ const SignUp = ({ handleSubmit }) => {
                   <DatePicker
                     className="h-10 opacity-0"
                     selected={dob}
-                    onChange={(date) => setDob(date)}
+                    onChange={setDob}
                     placeholder="Date of birth"
                     peekNextMonth
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
                     maxDate={Date.now()}
+                    popperPlacement="top-start"
                   />
                 </div>
               </InputGroup>
