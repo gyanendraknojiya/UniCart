@@ -37,7 +37,7 @@ const Login = ({ handleSubmit }) => {
             buttonText="Login"
             disabled
             className="w-full"
-            cookiePolicy={'single_host_origin'}
+            cookiePolicy="single_host_origin"
           />
           <div className="text-center my-2">or</div>
           <Stack spacing={5}>

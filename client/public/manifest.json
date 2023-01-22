@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "UniCart",
+  "name": "The e-commerce website sells a wide variety of products",
   "icons": [
     {
       "src": "favicon.ico",
