@@ -1,10 +1,11 @@
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { Button, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
+import { Button, Image, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import * as yup from 'yup';
+import logo from 'assets/logo.png';
 import CustomInput from 'components/customInput';
 import ROUTES from 'config/routes.json';
 import AuthLayout from 'layouts/authLayout';
@@ -31,6 +32,7 @@ const Login = ({ handleSubmit }) => {
             Sign Up
           </Button>
         </div>
+        <Image src={logo} alt="logo" className="h-24 mx-auto mb-5" />
         <form onSubmit={handleSubmit(handleLogin)}>
           <GoogleLogin
             clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"

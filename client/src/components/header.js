@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/icons';
-import { Avatar, AvatarBadge, Button, Container } from '@chakra-ui/react';
+import { Avatar, AvatarBadge, Button, Container, Image } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,7 @@ const Header = () => {
       <Container maxW="6xl">
         <nav className="flex py-2 items-center">
           <Link to="/">
-            <img src={logo} alt="logo" className="h-12" />
+            <Image src={logo} alt="logo" className="h-12" />
           </Link>
           <div className="ml-auto flex items-center">
             <Button className="mr-4" colorScheme="purple" variant="ghost">

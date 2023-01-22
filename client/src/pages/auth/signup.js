@@ -1,5 +1,5 @@
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { Button, Icon, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
+import { Button, Icon, Image, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SubmissionError, reduxForm } from 'redux-form';
 import * as yup from 'yup';
+import logo from 'assets/logo.png';
 import CustomInput from 'components/customInput';
 import ROUTES from 'config/routes.json';
 import AuthLayout from 'layouts/authLayout';
@@ -62,6 +63,7 @@ const SignUp = ({ handleSubmit }) => {
             Login
           </Button>
         </div>
+        <Image src={logo} alt="logo" className="h-24 mx-auto mb-5" />
         <form onSubmit={handleSubmit(handleUserSubmit)}>
           <Stack spacing={5}>
             <InputGroup>
