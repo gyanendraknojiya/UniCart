@@ -27,14 +27,18 @@ const ViewCart = () => {
       {/* Render cart items */}
       <Stack spacing="4" className="mt-10">
         {cartItems?.length ? (
-          cartItems.map((item, index) => <CartItem key={item.id} index={index} {...item}></CartItem>)
+          <Box>
+            {cartItems.map((item, index) => (
+              <CartItem key={item.id} index={index} {...item}></CartItem>
+            ))}
+            {/* Cart total */}
+            <hr className="my-2" />
+            <CartTotal />
+          </Box>
         ) : (
           <EmptyCart />
         )}
       </Stack>
-      {/* Cart total */}
-      <hr className="my-2" />
-      <CartTotal />
     </div>
   );
 };
