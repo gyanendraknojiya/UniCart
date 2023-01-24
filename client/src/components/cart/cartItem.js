@@ -51,10 +51,10 @@ const CartItem = ({ id, productDetails, quantity, index }) => {
       <GridItem colSpan={2} className="flex items-center  justify-end">
         <Stack className="text-right">
           <Text as="s" className="text-gray-500 ml-2" fontSize="xs">
-            ${formattedPrice(sellPrice)}
+            ${formattedPrice(mrp)}
           </Text>
           <Text as="b" fontSize="lg" color="gray.600">
-            ${formattedPrice(mrp)}
+            ${formattedPrice(sellPrice)}
           </Text>
 
           <Text color="green">{discountPercent(mrp, sellPrice)}% off</Text>

@@ -1,6 +1,7 @@
 import { Box, Container, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import CartTotal from 'components/cart//cartTotal';
 import EmptyCart from 'components/cart//emptyCart';
 import CartItem from 'components/cart/cartItem';
 import { toggleLoader } from 'redux/slice/loaderSlice';
@@ -32,6 +33,8 @@ const ViewCart = () => {
         )}
       </Stack>
       {/* Cart total */}
+      <hr className="my-2" />
+      <CartTotal />
     </div>
   );
 };

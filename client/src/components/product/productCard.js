@@ -43,12 +43,12 @@ const ProductCard = ({ id, title, featureImage, category, mrp, sellPrice }) => {
           <Text fontSize="xs">Price:</Text>
 
           <Text as="s" fontSize="xs" color="gray.500">
-            ${formattedPrice(sellPrice)}
+            ${formattedPrice(mrp)}
           </Text>
 
           <HStack>
             <Text fontSize="md" as="b">
-              ${formattedPrice(mrp)}
+              ${formattedPrice(sellPrice)}
             </Text>
             <Text fontSize="xs" color="green" className="ml-2">
               {discountPercent(mrp, sellPrice)}% off
