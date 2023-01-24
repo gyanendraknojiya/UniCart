@@ -48,9 +48,9 @@ const CartItem = ({ id, productDetails, quantity, index }) => {
           Remove
         </Button>
       </GridItem>
-      <GridItem colSpan={2} className="flex items-center  justify-end">
+      <GridItem colSpan={2} className="flex items-center justify-end">
         <Stack className="text-right">
-          <Text as="s" className="text-gray-500 ml-2" fontSize="xs">
+          <Text as="s" className="text-gray-500" fontSize="xs">
             ${formattedPrice(mrp)}
           </Text>
           <Text as="b" fontSize="lg" color="gray.600">

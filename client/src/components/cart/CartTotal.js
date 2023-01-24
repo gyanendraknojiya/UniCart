@@ -19,7 +19,7 @@ const CartTotal = () => {
             </Button>
           </Link>
         </GridItem>
-        <GridItem colSpan={3}>
+        <GridItem colSpan={3} className="flex items-center">
           Total cost: <Text as="b">${formattedPrice(totalCost)}</Text>
         </GridItem>
         <GridItem colSpan={2} className="text-end">
