@@ -1,4 +1,5 @@
 import { Box, Button, HStack, Image, Stack, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
 import { TbHandClick } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,12 +16,17 @@ const ProductCard = ({ id, title, featureImage, category, mrp, sellPrice }) => {
 
   const cartItems = useSelector((state) => state.cart.cartItems);
 
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
+
   const isAddedToCart = () => cartItems?.length && cartItems.find((item) => item.id === id);
 
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
     if (isAddedToCart()) return navigate(ROUTES.CART);
-    dispatch(addToCart(id));
+    setIsButtonLoading(true);
+    await dispatch(addToCart(id));
+    setIsButtonLoading(false);
   };
+
   return (
     <Box className="bg-gray-100 rounded-lg p-3">
       <Image
@@ -53,7 +59,13 @@ const ProductCard = ({ id, title, featureImage, category, mrp, sellPrice }) => {
           <Button className="text-white" variant="outline" colorScheme="blue" leftIcon={<TbHandClick />} size="xs">
             <span className="mt-1">VIEW</span>
           </Button>
-          <Button colorScheme="green" rightIcon={<FaCartPlus />} size="xs" onClick={addToCartHandler}>
+          <Button
+            isLoading={isButtonLoading}
+            colorScheme="green"
+            rightIcon={<FaCartPlus />}
+            size="xs"
+            onClick={addToCartHandler}
+          >
             <span className="mt-1">{isAddedToCart() ? 'GO TO CART ' : 'ADD TO CART'}</span>
           </Button>
         </Stack>

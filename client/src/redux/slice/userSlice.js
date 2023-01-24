@@ -51,7 +51,7 @@ export const userSlice = createSlice({
       state.isLoading = false;
     },
     [userSignup.rejected]: (state, action) => {
-      toast.error(action.payload.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
       state.signupSuccess = false;
     },
@@ -70,8 +70,7 @@ export const userSlice = createSlice({
       state.isLoading = false;
     },
     [userLogin.rejected]: (state, action) => {
-      console.log(action);
-      toast.error(action.payload.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
 
@@ -88,7 +87,7 @@ export const userSlice = createSlice({
     },
     [getUserProfile.rejected]: (state, action) => {
       localStorage.removeItem('token');
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
   },

@@ -15,7 +15,7 @@ export const loaderSlice = createSlice({
       state.isLoading = false;
     },
     toggleLoader: (state, action) => {
-      state.isLoading = action.payload;
+      state.isLoading = Boolean(action.payload);
     },
   },
 });

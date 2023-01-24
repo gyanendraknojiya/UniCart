@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Loading from 'components/loader';
+import Loader from 'components/loader/loader';
 import ROUTES from 'config/routes.json';
 import AuthValidator from 'hooks/authValidator';
 import Login from 'pages/auth/login';
@@ -28,6 +29,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Loader />
       {loading ? (
         <Loading />
       ) : (

@@ -31,7 +31,7 @@ export const productsSlice = createSlice({
       state.isLoading = false;
     },
     [getProductsList.rejected]: (state, action) => {
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
   },

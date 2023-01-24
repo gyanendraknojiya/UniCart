@@ -17,6 +17,7 @@ const CartItem = ({ id, productDetails, quantity, index }) => {
   };
 
   const handleDecreaseProductQuantity = () => {
+    if (quantity <= 1) return;
     dispatch(removeFromCart(id));
   };
 
@@ -39,9 +40,7 @@ const CartItem = ({ id, productDetails, quantity, index }) => {
         <HStack maxW="320px">
           <Button onClick={handleIncreaseProductQuantity}>+</Button>
           <Input htmlSize={2} value={quantity} />
-          <Button disabled={quantity <= 1} onClick={handleDecreaseProductQuantity}>
-            -
-          </Button>
+          <Button onClick={handleDecreaseProductQuantity}>-</Button>
         </HStack>
       </GridItem>
       <GridItem colSpan={2} className="flex items-center justify-center">

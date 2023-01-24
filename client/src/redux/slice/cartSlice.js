@@ -44,7 +44,7 @@ export const cartSlice = createSlice({
       state.isLoading = false;
     },
     [getCartItems.rejected]: (state, action) => {
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
       state.cartItems = initialState.cartItems;
     },
@@ -62,7 +62,7 @@ export const cartSlice = createSlice({
       state.isLoading = false;
     },
     [addToCart.rejected]: (state, action) => {
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
 
@@ -79,7 +79,7 @@ export const cartSlice = createSlice({
       state.isLoading = false;
     },
     [removeFromCart.rejected]: (state, action) => {
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
 
@@ -96,7 +96,7 @@ export const cartSlice = createSlice({
       state.isLoading = false;
     },
     [removeProductFromCart.rejected]: (state, action) => {
-      toast.error(action.payload?.message, 3000);
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },
   },
