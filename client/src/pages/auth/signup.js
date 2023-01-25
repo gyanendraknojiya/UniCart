@@ -1,5 +1,18 @@
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { Button, Icon, Image, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Icon,
+  Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Spacer,
+  Stack,
+} from '@chakra-ui/react';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -84,60 +97,64 @@ const SignUp = ({ handleSubmit }) => {
               </InputLeftElement>
               <CustomInput name="email" placeholder="Email" type="email" style={{ paddingLeft: '40px' }} />
             </InputGroup>
-            <div className="grid grid-cols-2 gap-4">
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <BsCalendarDateFill />
-                </InputLeftElement>
-                <Input
-                  placeholder="Date of Birth"
-                  disabled
-                  style={{ opacity: 1 }}
-                  value={dob && moment(dob).format('DD/MM/YYYY')}
-                />
-                <div className="absolute left-0 top-0">
-                  <DatePicker
-                    className="h-10 opacity-0"
-                    selected={dob}
-                    onChange={setDob}
-                    placeholder="Date of birth"
-                    peekNextMonth
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    maxDate={Date.now()}
-                    popperPlacement="top-start"
+            <Grid templateColumns="repeat(2, 1fr)" gap={2}>
+              <GridItem>
+                <InputGroup>
+                  <InputLeftElement pointerEvents="none">
+                    <BsCalendarDateFill />
+                  </InputLeftElement>
+                  <Input
+                    placeholder="Date of Birth"
+                    disabled
+                    style={{ opacity: 1 }}
+                    value={dob && moment(dob).format('DD/MM/YYYY')}
                   />
-                </div>
-              </InputGroup>
-              <InputGroup>
-                <div className="flex items-center justify-space border rounded-lg w-full space-x-2">
-                  <BsGenderAmbiguous className="mx-2 " />
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      className="default:ring-3 mr-2"
-                      value="male"
-                      checked={gender === 'male'}
-                      onChange={handleGenderChange}
+                  <Box className="absolute left-0 top-0">
+                    <DatePicker
+                      className="h-10 opacity-0"
+                      selected={dob}
+                      onChange={setDob}
+                      placeholder="Date of birth"
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      maxDate={Date.now()}
+                      popperPlacement="top-start"
                     />
-                    Male
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      className="mr-2"
-                      value="female"
-                      checked={gender === 'female'}
-                      onChange={handleGenderChange}
-                    />
-                    Female
-                  </label>
-                </div>
-              </InputGroup>
-            </div>
+                  </Box>
+                </InputGroup>
+              </GridItem>
+              <GridItem>
+                <InputGroup>
+                  <Flex align="center" justifyContent="space-between" className="border rounded-md p-2 w-full">
+                    <BsGenderAmbiguous className="mr-2" />
+                    <label>
+                      <input
+                        type="radio"
+                        name="gender"
+                        className="default:ring-3 mr-2"
+                        value="male"
+                        checked={gender === 'male'}
+                        onChange={handleGenderChange}
+                      />
+                      Male
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="gender"
+                        className="mr-2"
+                        value="female"
+                        checked={gender === 'female'}
+                        onChange={handleGenderChange}
+                      />
+                      Female
+                    </label>
+                  </Flex>
+                </InputGroup>
+              </GridItem>
+            </Grid>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <LockIcon />

@@ -27,12 +27,11 @@ const ViewCart = () => {
       {/* Render cart items */}
       <Stack spacing="4" className="mt-10">
         {cartItems?.length ? (
-          <Box>
+          <Box className="mb-24">
             {cartItems.map((item, index) => (
               <CartItem key={item.id} index={index} {...item}></CartItem>
             ))}
             {/* Cart total */}
-            <hr className="my-2" />
             <CartTotal />
           </Box>
         ) : (

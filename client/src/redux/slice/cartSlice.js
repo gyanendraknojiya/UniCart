@@ -6,6 +6,7 @@ import { del, get, patch, post } from 'utils/axios';
 const initialState = {
   isLoading: false,
   cartItems: null,
+  showCheckoutModal: false,
 };
 
 export const getCartItems = createAsyncThunk('GET_CART_ITEMS', async (data, thunkAPI) => {
@@ -31,7 +32,11 @@ export const removeProductFromCart = createAsyncThunk('REMOVE_PRODUCT_FROM_CART'
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleCheckoutModal: (state, action) => {
+      state.showCheckoutModal = Boolean(action.payload);
+    },
+  },
   extraReducers: {
     [getCartItems.pending]: (state) => {
       state.isLoading = true;
@@ -102,4 +107,5 @@ export const cartSlice = createSlice({
   },
 });
 
+export const { toggleCheckoutModal } = cartSlice.actions;
 export default cartSlice.reducer;

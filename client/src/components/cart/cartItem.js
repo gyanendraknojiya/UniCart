@@ -26,7 +26,7 @@ const CartItem = ({ id, productDetails, quantity, index }) => {
   };
 
   return (
-    <Grid templateColumns="repeat(16, 1fr)" gap={6} className="p-2 rounded-md bg-gray-50">
+    <Grid templateColumns="repeat(16, 1fr)" gap={6} className="my-3 p-2 rounded-md bg-gray-50">
       <GridItem colSpan={2}>
         <Image src={featureImage} alt={title} className="w-full aspect-square object-contain bg-gray-200 rounded-sm" />
       </GridItem>
