@@ -18,7 +18,7 @@ const Header = () => {
   const handleGoToCart = () => navigate(ROUTES.CART);
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 sticky top-0">
       <Container maxW="6xl">
         <nav className="flex py-2 items-center">
           <Link to={ROUTES.HOMEPAGE}>

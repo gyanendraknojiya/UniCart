@@ -37,7 +37,7 @@ const Checkout = () => {
               </CardHeader>
               <CardBody>
                 <Details formName="shippingDetails" title="Shipping Details" />
-                <hr className="my-3" />
+                <hr className="my-4" />
                 <Details formName="billingDetails" title="Billing Details" />
               </CardBody>
             </Card>
