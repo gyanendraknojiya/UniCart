@@ -11,11 +11,12 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import Details from 'components/checkout/details';
+import PaymentDetails from 'components/checkout/paymentDetails';
 import { toggleCheckoutModal } from 'redux/slice/cartSlice';
 
 const Checkout = () => {
   const dispatch = useDispatch();
+
   const showCheckoutModal = useSelector((state) => state.cart.showCheckoutModal);
 
   const onClose = () => {
@@ -36,9 +37,7 @@ const Checkout = () => {
                 </Text>
               </CardHeader>
               <CardBody>
-                <Details formName="shippingDetails" title="Shipping Details" />
-                <hr className="my-4" />
-                <Details formName="billingDetails" title="Billing Details" />
+                <PaymentDetails />
               </CardBody>
             </Card>
           </GridItem>

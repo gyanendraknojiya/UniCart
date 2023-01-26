@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/icons';
-import { Avatar, AvatarBadge, Button, Container, Image } from '@chakra-ui/react';
+import { Avatar, AvatarBadge, Box, Button, Container, Image } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,13 +18,13 @@ const Header = () => {
   const handleGoToCart = () => navigate(ROUTES.CART);
 
   return (
-    <div className="bg-gray-100 sticky top-0">
+    <Box className="sticky top-0 z-50 border-b-2" bg="white">
       <Container maxW="6xl">
         <nav className="flex py-2 items-center">
           <Link to={ROUTES.HOMEPAGE}>
             <Image src={logo} alt="logo" className="h-12" />
           </Link>
-          <div className="ml-auto flex items-center">
+          <Box className="ml-auto flex items-center">
             <Button className="mr-4" colorScheme="purple" variant="ghost">
               {userDetails.firstName}
               <Avatar className="ml-2" size="sm">
@@ -37,10 +37,10 @@ const Header = () => {
             <Button onClick={handleGoToCart}>
               <Icon as={FaShoppingCart} className="mr-2" /> CART
             </Button>
-          </div>
+          </Box>
         </nav>
       </Container>
-    </div>
+    </Box>
   );
 };
 

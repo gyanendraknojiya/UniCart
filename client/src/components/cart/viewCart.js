@@ -17,7 +17,7 @@ const ViewCart = () => {
   }, [isLoading]);
 
   return (
-    <div className="mt-10">
+    <Box className="mt-10">
       <Stack spacing="3">
         <Text fontSize="2xl" as="b">
           Shopping Cart
@@ -38,7 +38,7 @@ const ViewCart = () => {
           <EmptyCart />
         )}
       </Stack>
-    </div>
+    </Box>
   );
 };
 
