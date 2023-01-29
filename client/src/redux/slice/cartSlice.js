@@ -29,6 +29,11 @@ export const removeProductFromCart = createAsyncThunk('REMOVE_PRODUCT_FROM_CART'
   return response.data;
 });
 
+export const checkoutCart = createAsyncThunk('CHECKOUT_CART', async (payload, thunkAPI) => {
+  const response = await post(urls.CART.CHECKOUT_CART, payload, thunkAPI);
+  return response.data;
+});
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -101,6 +106,18 @@ export const cartSlice = createSlice({
       state.isLoading = false;
     },
     [removeProductFromCart.rejected]: (state, action) => {
+      toast.error(action.payload?.message || 'Something went wrong', 3000);
+      state.isLoading = false;
+    },
+
+    [checkoutCart.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [checkoutCart.fulfilled]: (state, action) => {
+      const { success } = action.payload;
+      state.isLoading = false;
+    },
+    [checkoutCart.rejected]: (state, action) => {
       toast.error(action.payload?.message || 'Something went wrong', 3000);
       state.isLoading = false;
     },

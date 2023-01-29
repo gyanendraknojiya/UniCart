@@ -91,4 +91,15 @@ const removeProductFromCart = async(req, res) => {
   }
 };
 
-module.exports = { getCart, addItemToCart, removeItemToCart, removeProductFromCart };
+const checkout = (req, res) => {
+  try {
+    const payload = req.body;
+    console.log(payload);
+    throw new Error("Todo: payment and order");
+  } catch (e) {
+    console.error(e);
+    res.status(400).json({ success: false, message: e.message || "Something went wrong!" });
+  }
+};
+
+module.exports = { getCart, addItemToCart, removeItemToCart, removeProductFromCart, checkout };

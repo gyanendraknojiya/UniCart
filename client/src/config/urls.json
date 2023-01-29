@@ -7,6 +7,7 @@
     "GET_CART_ITEMS": "/cart",
     "ADD_TO_CART": "/cart/",
     "REMOVE_FROM_CART": "/cart/",
-    "REMOVE_PRODUCT_FROM_CART": "/cart/product/"
+    "REMOVE_PRODUCT_FROM_CART": "/cart/product/",
+    "CHECKOUT_CART": "/cart/checkout"
   }
 }

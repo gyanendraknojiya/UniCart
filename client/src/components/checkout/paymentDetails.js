@@ -2,18 +2,22 @@ import { Box, Button, Grid, GridItem, HStack, Heading } from '@chakra-ui/react';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { formValueSelector, reduxForm } from 'redux-form';
 import * as yup from 'yup';
 import Agreement from 'components/checkout/agreement';
 import CustomInput from 'components/customInput';
 import GetTotalCartValue from 'hooks/getTotalCartValue';
 import PriceFormat from 'hooks/priceFormat';
+import { checkoutCart } from 'redux/slice/cartSlice';
+import { toggleLoader } from 'redux/slice/loaderSlice';
 import { asyncValidate } from 'utils/asyncValidate';
 
 const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
 const CheckoutForm = ({ handleSubmit }) => {
+  const dispatch = useDispatch();
   const { formattedPrice } = PriceFormat();
   const { totalCost } = GetTotalCartValue();
   const stripe = useStripe();
@@ -56,16 +60,28 @@ const CheckoutForm = ({ handleSubmit }) => {
     },
   ];
 
-  const onSubmit = async () => {
+  const onSubmit = async (shippingAddress) => {
     if (elements == null) {
       return;
     }
+
+    console.log(shippingAddress);
+    dispatch(toggleLoader(true));
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
+
+    if (error) {
+      toast.error(error.message, 3000);
+      dispatch(toggleLoader(false));
+      return;
+    }
+
     console.log(error, paymentMethod);
+    dispatch(toggleLoader(false));
+    dispatch(checkoutCart({ shippingAddress, paymentMethod }));
   };
   return (
     <Box>
@@ -84,7 +100,7 @@ const CheckoutForm = ({ handleSubmit }) => {
           <Heading fontSize="md" my="5">
             Card Details
           </Heading>
-          <Box className="border p-3">
+          <Box className="border p-3 rounded-md">
             <CardElement />
           </Box>
         </Box>
