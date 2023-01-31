@@ -1,11 +1,18 @@
 const { getRedisCartKey } = require("../helpers/redisCartKey");
+const { User } = require("../models/user");
 const {
   cartItemsToProducts,
   getCartItemsByKey,
   addItemToCartByProductId,
   decreaseProductQuantityByProductId,
   removeProductByProductId,
+  createOrder,
+  getCartTotalAmount,
+  makePayment,
+  saveOrder,
+  removeAllCartItems,
 } = require("../services/CartServices");
+const { findUserById } = require("../services/userServices");
 const { redisClient } = require("../utils/redis");
 
 const getCart = async (req, res) => {
@@ -36,6 +43,9 @@ const addItemToCart = async (req, res) => {
     const cartItemsArray = await addItemToCartByProductId(productId, cartKey);
 
     await redisClient.set(cartKey, JSON.stringify(cartItemsArray));
+
+    // clear cart
+    await removeAllCartItems(cartKey);
     const cartItems = cartItemsToProducts(cartItemsArray);
     return res.status(200).json({
       success: true,
@@ -69,7 +79,7 @@ const removeItemToCart = async (req, res) => {
   }
 };
 
-const removeProductFromCart = async(req, res) => {
+const removeProductFromCart = async (req, res) => {
   try {
     const { userId } = req.session;
     const { productId } = req.params;
@@ -91,11 +101,27 @@ const removeProductFromCart = async(req, res) => {
   }
 };
 
-const checkout = (req, res) => {
+const checkout = async (req, res) => {
   try {
-    const payload = req.body;
-    console.log(payload);
-    throw new Error("Todo: payment and order");
+    const { paymentMethod, shippingDetails } = req.body;
+    const { userId } = req.session;
+    const cartKey = getRedisCartKey(userId);
+
+    const cartItemsArray = await getCartItemsByKey(cartKey);
+    const cartItems = cartItemsToProducts(cartItemsArray);
+    if (!cartItems.length) throw new Error("Cart is empty!");
+
+    const amount = getCartTotalAmount(cartItems);
+
+    const chargeId = await makePayment(amount, paymentMethod, shippingDetails);
+
+    const order = await saveOrder(userId, paymentMethod, chargeId, shippingDetails, amount);
+
+    res.status(200).json({
+      message: "Order placed successfully",
+      success: true,
+      orderId: order.id,
+    });
   } catch (e) {
     console.error(e);
     res.status(400).json({ success: false, message: e.message || "Something went wrong!" });

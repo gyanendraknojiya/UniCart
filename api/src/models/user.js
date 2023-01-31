@@ -12,6 +12,9 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
+schema.static('findUserById', function(id) {
+  return this.findById(id);
+});
 const User = mongoose.model("User", schema);
 
 module.exports = { User };

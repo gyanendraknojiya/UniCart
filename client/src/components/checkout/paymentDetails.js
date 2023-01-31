@@ -14,7 +14,7 @@ import { checkoutCart } from 'redux/slice/cartSlice';
 import { toggleLoader } from 'redux/slice/loaderSlice';
 import { asyncValidate } from 'utils/asyncValidate';
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_CLIENT);
 
 const CheckoutForm = ({ handleSubmit }) => {
   const dispatch = useDispatch();
@@ -60,12 +60,11 @@ const CheckoutForm = ({ handleSubmit }) => {
     },
   ];
 
-  const onSubmit = async (shippingAddress) => {
+  const onSubmit = async (shippingDetails) => {
     if (elements == null) {
       return;
     }
 
-    console.log(shippingAddress);
     dispatch(toggleLoader(true));
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -78,10 +77,8 @@ const CheckoutForm = ({ handleSubmit }) => {
       dispatch(toggleLoader(false));
       return;
     }
-
-    console.log(error, paymentMethod);
     dispatch(toggleLoader(false));
-    dispatch(checkoutCart({ shippingAddress, paymentMethod }));
+    dispatch(checkoutCart({ shippingDetails, paymentMethod: paymentMethod.id }));
   };
   return (
     <Box>

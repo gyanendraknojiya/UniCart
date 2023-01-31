@@ -3,5 +3,7 @@
   "LOGIN": "/login",
   "SIGN_UP": "/signup",
   "CART": "/cart",
-  "TERMS_AND_CONDITIONS": "/terms-and-conditions"
+  "TERMS_AND_CONDITIONS": "/terms-and-conditions",
+  "ORDERS":"/orders",
+  "ORDERS_DETAILS":"/orders/:id"
 }

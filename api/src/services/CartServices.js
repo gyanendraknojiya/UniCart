@@ -1,4 +1,6 @@
 const products = require("../data/products.json");
+const { payment } = require("../helpers/stripePayment");
+const { Order } = require("../models/order");
 const { redisClient } = require("../utils/redis");
 
 const findProductById = (id) => {
@@ -18,6 +20,8 @@ const getCartItemsByKey = async (cartKey) => {
   }
   return [];
 };
+
+const removeAllCartItems = async (cartKey) => redisClient.del(cartKey);
 
 const addItemToCartByProductId = async (productId, cartKey) => {
   let cartItemsArray = await getCartItemsByKey(cartKey);
@@ -64,11 +68,48 @@ const removeProductByProductId = async (productId, cartKey) => {
   return updatedCartItemsArray;
 };
 
+const getCartTotalAmount = (items) => {
+  return items.reduce((total, item) => total + item.productDetails.sellPrice * item.quantity, 0);
+};
+
+const makePayment = async (amount, paymentMethod, shippingDetails, currency) => {
+  const { firstName, lastName, address, state, country, zip } = shippingDetails;
+  const shipping = {
+    name: `${firstName} ${lastName}`,
+    address: {
+      line1: address,
+      state,
+      country,
+      postal_code: zip,
+    },
+  };
+
+  return payment(amount, paymentMethod, shipping);
+};
+
+const saveOrder = async (userId, paymentMethod, chargeId, shippingDetails, amount) => {
+  const order = new Order({
+    userId,
+    paymentMethod,
+    chargeId,
+    products,
+    status: "Confirmed",
+    shippingDetails,
+    amount,
+  });
+
+  return order.save();
+};
+
 module.exports = {
   findProductById,
   cartItemsToProducts,
   getCartItemsByKey,
+  removeAllCartItems,
   addItemToCartByProductId,
   decreaseProductQuantityByProductId,
   removeProductByProductId,
+  getCartTotalAmount,
+  makePayment,
+  saveOrder,
 };

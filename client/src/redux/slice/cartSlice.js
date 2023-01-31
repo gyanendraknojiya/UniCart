@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import ROUTES from 'config/routes.json';
 import urls from 'config/urls.json';
 import { del, get, patch, post } from 'utils/axios';
 
@@ -114,7 +115,11 @@ export const cartSlice = createSlice({
       state.isLoading = true;
     },
     [checkoutCart.fulfilled]: (state, action) => {
-      const { success } = action.payload;
+      const { success, message, orderId } = action.payload;
+      if (success) {
+        toast.success(message, 3000);
+        window.location.replace(`${ROUTES.ORDERS}/${orderId}`);
+      }
       state.isLoading = false;
     },
     [checkoutCart.rejected]: (state, action) => {

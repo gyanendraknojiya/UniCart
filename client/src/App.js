@@ -10,6 +10,7 @@ import Login from 'pages/auth/login';
 import SignUp from 'pages/auth/signup';
 import Cart from 'pages/cart';
 import Homepage from 'pages/homepage';
+import OrderDetails from 'pages/orders/orderDetails';
 import { getCartItems } from 'redux/slice/cartSlice';
 
 const App = () => {
@@ -43,6 +44,14 @@ const App = () => {
             element={
               <AuthRoute>
                 <Cart />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path={ROUTES.ORDERS_DETAILS}
+            element={
+              <AuthRoute>
+                <OrderDetails />
               </AuthRoute>
             }
           />

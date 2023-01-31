@@ -21,7 +21,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "nodemon": "^2.0.20",
-    "redis": "^4.5.1"
+    "redis": "^4.5.1",
+    "stripe": "^11.8.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",
