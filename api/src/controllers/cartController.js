@@ -44,8 +44,6 @@ const addItemToCart = async (req, res) => {
 
     await redisClient.set(cartKey, JSON.stringify(cartItemsArray));
 
-    // clear cart
-    await removeAllCartItems(cartKey);
     const cartItems = cartItemsToProducts(cartItemsArray);
     return res.status(200).json({
       success: true,
@@ -116,6 +114,9 @@ const checkout = async (req, res) => {
     const chargeId = await makePayment(amount, paymentMethod, shippingDetails);
 
     const order = await saveOrder(userId, paymentMethod, chargeId, shippingDetails, amount);
+
+    // clear cart
+    await removeAllCartItems(cartKey);
 
     res.status(200).json({
       message: "Order placed successfully",
